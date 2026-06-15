@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="CollegeKaksha — India's smartest college, course and career discovery platform. AI-powered recommendations, 1 application for 2000+ colleges." />
+  <title>CollegeKaksha — Right Guidance, Bright Future</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://images.unsplash.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- TOP BAR -->
+  <div class="topbar">
+    <div class="wrap topbar-inner">
+      <div class="tb-left">
+        <a href="mailto:hello@collegekaksha.com"><i data-lucide="mail"></i> hello@collegekaksha.com</a>
+        <span class="sep">·</span>
+        <a href="tel:18005729877"><i data-lucide="phone"></i> 1800-572-9877 (Toll Free)</a>
+      </div>
+      <div class="tb-right">
+        <span>Follow us</span>
+        <a href="#" aria-label="Facebook"><i data-lucide="facebook"></i></a>
+        <a href="#" aria-label="Instagram"><i data-lucide="instagram"></i></a>
+        <a href="#" aria-label="Twitter"><i data-lucide="twitter"></i></a>
+        <a href="#" aria-label="YouTube"><i data-lucide="youtube"></i></a>
+        <a href="#" aria-label="LinkedIn"><i data-lucide="linkedin"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN NAV -->
+  <header class="nav" id="nav">
+    <div class="wrap nav-inner">
+      <a href="#top" class="brand">
+        <div class="brand-mark">
+          <i data-lucide="graduation-cap"></i>
+        </div>
+        <div class="brand-text">
+          <strong>College<span>Kaksha</span></strong>
+          <em>Right Guidance · Bright Future</em>
+        </div>
+      </a>
+
+      <nav class="menu" aria-label="Primary">
+        <ul>
+          <li class="has-mega">
+            <button class="m-btn">Colleges <i data-lucide="chevron-down"></i></button>
+            <div class="mega">
+              <div class="mega-col">
+                <h4>By Stream</h4>
+                <ul>
+                  <li><a href="#"><i data-lucide="cpu"></i> Engineering · 7,234</a></li>
+                  <li><a href="#"><i data-lucide="briefcase"></i> Management · 5,621</a></li>
+                  <li><a href="#"><i data-lucide="stethoscope"></i> Medical · 612</a></li>
+                  <li><a href="#"><i data-lucide="scale"></i> Law · 884</a></li>
+                  <li><a href="#"><i data-lucide="trending-up"></i> Commerce · 9,420</a></li>
+                  <li><a href="#"><i data-lucide="palette"></i> Arts &amp; Humanities</a></li>
+                </ul>
+              </div>
+              <div class="mega-col">
+                <h4>By City</h4>
+                <ul>
+                  <li><a href="#"><i data-lucide="map-pin"></i> Delhi NCR</a></li>
+                  <li><a href="#"><i data-lucide="map-pin"></i> Bangalore</a></li>
+                  <li><a href="#"><i data-lucide="map-pin"></i> Mumbai</a></li>
+                  <li><a href="#"><i data-lucide="map-pin"></i> Hyderabad</a></li>
+                  <li><a href="#"><i data-lucide="map-pin"></i> Pune</a></li>
+                  <li><a href="#"><i data-lucide="map-pin"></i> Chennai</a></li>
+                </ul>
+              </div>
+              <div class="mega-feature">
+                <span class="tag">AI · NEW</span>
+                <h5>College Predictor</h5>
+                <p>Get a personalised ranked list of colleges that fit your rank, stream and budget.</p>
+                <a href="#" class="link">Try predictor <i data-lucide="arrow-right"></i></a>
+              </div>
+            </div>
+          </li>
+          <li><a href="#exams">Exams</a></li>
+          <li><a href="#courses">Courses</a></li>
+          <li><a href="#rankings">Rankings</a></li>
+          <li><a href="#news">News</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="ico-btn" id="themeToggle" aria-label="Toggle dark mode">
+          <i data-lucide="sun" class="i-sun"></i>
+          <i data-lucide="moon" class="i-moon"></i>
+        </button>
+        <button class="ico-btn wishlist-btn" id="wishlistBtn" aria-label="Wishlist">
+          <i data-lucide="heart"></i>
+          <span class="wl-badge" id="wlBadge" hidden>0</span>
+        </button>
+        <button class="btn btn-orange nav-cta" data-modal="default">
+          <i data-lucide="headset"></i> Talk to Expert
+        </button>
+        <button class="hamburger" id="hamburger" aria-label="Menu">
+          <i data-lucide="menu"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero" id="top">
+    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="hero-overlay" aria-hidden="true"></div>
+
+    <div class="wrap hero-inner">
+      <div class="hero-content">
+        <div class="hero-tag">
+          <span class="pulse"></span> Admissions 2026 are live — 12,420 students joined this week
+        </div>
+        <h1>Right Guidance,<br/><span>Bright Future</span></h1>
+        <p>Discover the perfect college, course and career path with AI-powered recommendations. Trusted by <strong>1.2 Cr+ students</strong> across India.</p>
+
+        <!-- HERO SEARCH -->
+        <div class="hero-search">
+          <div class="hs-tabs">
+            <button class="hs-tab active" data-stab="colleges"><i data-lucide="school"></i> Colleges</button>
+            <button class="hs-tab" data-stab="courses"><i data-lucide="book-open"></i> Courses</button>
+            <button class="hs-tab" data-stab="exams"><i data-lucide="clipboard-list"></i> Exams</button>
+          </div>
+          <div class="hs-box">
+            <i data-lucide="search"></i>
+            <input id="heroSearch" type="search" placeholder="Search IIT Delhi, BITS Pilani, MBA…" autocomplete="off" />
+            <button class="btn btn-orange hs-go">Search</button>
+            <div class="suggest" id="suggest" hidden></div>
+          </div>
+          <div class="hs-chips">
+            <span>Trending:</span>
+            <button class="chip">B.Tech CSE</button>
+            <button class="chip">MBA</button>
+            <button class="chip">MBBS</button>
+            <button class="chip">JEE Main 2026</button>
+            <button class="chip">CUET</button>
+          </div>
+        </div>
+
+        <div class="hero-cta">
+          <a href="#colleges" class="btn btn-orange"><i data-lucide="compass"></i> Find Your College</a>
+          <a href="#" class="btn btn-glass"><i data-lucide="play"></i> Watch how it works</a>
+        </div>
+      </div>
+
+      <!-- HERO FLOATING CARDS -->
+      <div class="hero-side" aria-hidden="true">
+        <div class="float-card fc-1">
+          <div class="fc-head">
+            <span class="badge-ai"><i data-lucide="sparkles"></i> AI Match</span>
+            <span class="fc-rank">96% fit</span>
+          </div>
+          <div class="fc-college">
+            <img src="assets/colleges/iit-bombay.jpg" alt="IIT Bombay" />
+            <div>
+              <strong>IIT Bombay</strong>
+              <span>B.Tech Computer Science</span>
+            </div>
+          </div>
+          <div class="fc-bar"><span style="width:96%"></span></div>
+        </div>
+
+        <div class="float-card fc-2">
+          <div class="fc-stat-icon"><i data-lucide="trending-up"></i></div>
+          <div>
+            <strong>34.2 LPA</strong>
+            <span>Avg. placement · IIM-A 2025</span>
+          </div>
+        </div>
+
+        <div class="float-card fc-3">
+          <div class="fc-exam">
+            <span class="exam-live"><span class="dot"></span> Live</span>
+            <strong>JEE Main Session 2</strong>
+            <span>Application closes in 14 days</span>
+          </div>
+          <button class="btn-mini">Apply <i data-lucide="arrow-right"></i></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Rating + News ticker -->
+    <div class="rating-strip">
+      <div class="wrap rating-inner">
+        <div class="r-rating">
+          <span class="g-logo">G</span>
+          <div>
+            <strong>4.8</strong>
+            <div class="stars">★★★★★</div>
+          </div>
+          <span class="r-meta">Rated by 1.2L+ students</span>
+        </div>
+        <div class="rating-news">
+          <div class="rn-track">
+            <a href="#"><i data-lucide="zap"></i> TS EDCET 2026 Counselling — Round 2 Open</a>
+            <a href="#"><i data-lucide="zap"></i> DU CSAS PG First Selection List Released</a>
+            <a href="#"><i data-lucide="zap"></i> UPTAC B.Tech Counselling Registration Now Open</a>
+            <a href="#"><i data-lucide="zap"></i> JEE Main April Session — Apply Now</a>
+            <a href="#"><i data-lucide="zap"></i> NEET-UG 2026 Application Form Live</a>
+            <a href="#"><i data-lucide="zap"></i> TS EDCET 2026 Counselling — Round 2 Open</a>
+            <a href="#"><i data-lucide="zap"></i> DU CSAS PG First Selection List Released</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- KEY METRICS -->
+  <section class="metrics">
+    <div class="wrap metrics-grid">
+      <div class="metric">
+        <div class="m-icon" style="background:#fff1ea;color:#ff6b35"><i data-lucide="school"></i></div>
+        <strong data-count="30000">0</strong>
+        <span>Colleges Listed</span>
+      </div>
+      <div class="metric">
+        <div class="m-icon" style="background:#e0f2fe;color:#0284c7"><i data-lucide="book-open"></i></div>
+        <strong data-count="1500">0</strong>
+        <span>Courses Available</span>
+      </div>
+      <div class="metric">
+        <div class="m-icon" style="background:#fce7f3;color:#db2777"><i data-lucide="clipboard-list"></i></div>
+        <strong data-count="800">0</strong>
+        <span>Entrance Exams</span>
+      </div>
+      <div class="metric">
+        <div class="m-icon" style="background:#dcfce7;color:#16a34a"><i data-lucide="users"></i></div>
+        <strong data-count="12000000">0</strong>
+        <span>Happy Students</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURE STEPS -->
+  <section class="steps-wrap" id="how">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="kicker">How it works</span>
+        <h2>Choosing the right college, made <span class="grad">simple</span></h2>
+        <p>From discovery to admission — we guide you at every step of your college journey.</p>
+      </div>
+
+      <div class="steps">
+        <div class="step done">
+          <span class="dot"><i data-lucide="check"></i></span>
+          <span class="label">Register</span>
+        </div>
+        <div class="step done">
+          <span class="dot"><i data-lucide="check"></i></span>
+          <span class="label">Select Course</span>
+        </div>
+        <div class="step active">
+          <span class="dot">3</span>
+          <span class="label">Fill Application</span>
+        </div>
+        <div class="step">
+          <span class="dot">4</span>
+          <span class="label">Upload Documents</span>
+        </div>
+      </div>
+
+      <div class="feat-grid">
+        <div class="feat-card">
+          <div class="feat-icon"><i data-lucide="target"></i></div>
+          <div class="feat-text">
+            <h4>Get Your Career Match</h4>
+            <p>Take our free career compass and get top career options matched to your personality.</p>
+          </div>
+        </div>
+        <div class="feat-card">
+          <div class="feat-icon"><i data-lucide="file-text"></i></div>
+          <div class="feat-text">
+            <h4>Apply With One Form</h4>
+            <p>A single form to apply to 2000+ esteemed colleges — no repeats, no hassle.</p>
+          </div>
+        </div>
+        <div class="feat-card">
+          <div class="feat-icon"><i data-lucide="layout-dashboard"></i></div>
+          <div class="feat-text">
+            <h4>Track All Applications</h4>
+            <p>Manage every application's status, deadlines and documents in one dashboard.</p>
+          </div>
+        </div>
+        <div class="feat-card">
+          <div class="feat-icon"><i data-lucide="message-circle"></i></div>
+          <div class="feat-text">
+            <h4>Talk to Admission Experts</h4>
+            <p>Free 1:1 guidance from IIT/IIM mentors and seasoned admission counsellors.</p>
+          </div>
+        </div>
+        <div class="feat-card">
+          <div class="feat-icon"><i data-lucide="clock"></i></div>
+          <div class="feat-text">
+            <h4>Easy Apply in 5 Minutes</h4>
+            <p>File your application in under 5 minutes — auto-filled, signed and submitted.</p>
+          </div>
+        </div>
+        <div class="feat-card">
+          <div class="feat-icon"><i data-lucide="gift"></i></div>
+          <div class="feat-text">
+            <h4>Win Exciting Rewards</h4>
+            <p>Cashback, vouchers and scholarships up to ₹2 lakh for every application.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="step-cta">
+        <a href="#" class="btn btn-orange">Start Your Application <i data-lucide="arrow-right"></i></a>
+        <a href="#" class="btn btn-outline-orange"><i data-lucide="headset"></i> Talk to a College Expert</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ONLINE DEGREES BANNER -->
+  <section class="banner-online">
+    <div class="wrap banner-inner">
+      <div class="banner-left">
+        <div class="banner-illo">
+          <img src="assets/promo/online-degrees.jpg" alt="Online learning" loading="lazy" />
+        </div>
+        <div>
+          <h3>Unlock Your <em>Future</em> with</h3>
+          <h2>Online Degrees</h2>
+          <p>from Top UGC-approved Universities!</p>
+        </div>
+      </div>
+      <div class="banner-right">
+        <div class="b-stat">
+          <i data-lucide="infinity"></i>
+          <div><strong>100% Flexible</strong><span>Learn at your own pace</span></div>
+        </div>
+        <div class="b-stat">
+          <i data-lucide="badge-check"></i>
+          <div><strong>UGC Approved</strong><span>Govt. recognised degrees</span></div>
+        </div>
+        <a href="#" class="btn btn-white">Get Free Counselling <i data-lucide="arrow-right"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- MEDIA STRIP -->
+  <section class="media-strip">
+    <div class="wrap">
+      <p class="m-title">Praised by India's leading media</p>
+      <div class="media-logos">
+        <span>The Economic Times</span>
+        <span>BBC</span>
+        <span>The Hindu</span>
+        <span>Mint</span>
+        <span>NDTV</span>
+        <span>The Indian Express</span>
+        <span>Forbes India</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CAREER BAND -->
+  <section class="career-band">
+    <div class="wrap cb-inner">
+      <div class="cb-img">
+        <img src="assets/promo/career-compass.jpg" alt="Career guidance" loading="lazy" />
+      </div>
+      <div class="cb-content">
+        <span class="kicker">Career Compass</span>
+        <h3>Confused about the best career choice for you?</h3>
+        <p>Discover your path with our personalised career recommendation tool. Explore your skills, personality and interests for guidance designed just for you.</p>
+      </div>
+      <a href="#" class="btn btn-orange">Get Recommendations <i data-lucide="arrow-right"></i></a>
+    </div>
+  </section>
+
+  <!-- COMMON APP BIG -->
+  <section class="common-app">
+    <div class="wrap ca-inner">
+      <span class="ca-tag"><i data-lucide="award"></i> #1 India's Largest Common Application Form</span>
+      <h2><span class="big-orange">2000+ Colleges,</span><br/>1 Application Form</h2>
+      <p>Applying to your dream colleges made effortlessly easy.</p>
+      <a href="#" class="btn btn-blue btn-lg">Start Your Application <i data-lucide="arrow-right"></i></a>
+      <div class="ca-trust">
+        <div><i data-lucide="shield-check"></i> 100% Verified</div>
+        <div><i data-lucide="lock"></i> Bank-grade Secure</div>
+        <div><i data-lucide="zap"></i> Instant Updates</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- JOB READY -->
+  <section class="job-ready">
+    <div class="jr-bg" aria-hidden="true"></div>
+    <div class="wrap jr-inner">
+      <div class="jr-left">
+        <div class="jr-photo">
+          <img src="assets/promo/job-ready.jpg" alt="Student" loading="lazy" />
+          <div class="jr-badge"><i data-lucide="check-circle"></i> Verified Placements</div>
+        </div>
+      </div>
+      <div class="jr-right">
+        <span class="jr-kicker">With Job Ready Degrees</span>
+        <h2>You could be <em>this</em> <span class="jr-aw">AWESOME!</span></h2>
+        <div class="jr-features">
+          <div><i data-lucide="book-marked"></i><p>Industry-led Dynamic Curriculum</p></div>
+          <div><i data-lucide="award"></i><p>Industry Certifications</p></div>
+          <div><i data-lucide="layers"></i><p>Build a portfolio, not a resume</p></div>
+          <div><i data-lucide="users-round"></i><p>Learn from 1,250+ Corporate Coaches</p></div>
+          <div><i data-lucide="building-2"></i><p>250+ Companies, Live Projects</p></div>
+          <div><i data-lucide="sparkles"></i><p>Internships with 500+ Brands</p></div>
+        </div>
+        <a href="#" class="btn btn-white">Apply to a Job Ready Degree <i data-lucide="arrow-right"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPLORE TABS -->
+  <section class="section explore-section" id="courses">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="kicker">Find your fit</span>
+        <h2>Find The Perfect <span class="grad">College For You</span></h2>
+        <p>Discover top colleges, exams and opportunities in your preferred field.</p>
+      </div>
+
+      <div class="exp-tabs-wrap">
+        <div class="exp-tabs">
+          <button class="exp-tab active" data-extab="eng"><i data-lucide="cpu"></i> Engineering</button>
+          <button class="exp-tab" data-extab="mgmt"><i data-lucide="briefcase"></i> Management</button>
+          <button class="exp-tab" data-extab="comm"><i data-lucide="trending-up"></i> Commerce</button>
+          <button class="exp-tab" data-extab="med"><i data-lucide="stethoscope"></i> Medical</button>
+          <button class="exp-tab" data-extab="sci"><i data-lucide="flask-conical"></i> Science</button>
+          <button class="exp-tab" data-extab="hosp"><i data-lucide="utensils"></i> Hotel Mgmt</button>
+          <button class="exp-tab" data-extab="it"><i data-lucide="code"></i> IT</button>
+          <button class="exp-tab" data-extab="arts"><i data-lucide="palette"></i> Arts</button>
+        </div>
+      </div>
+
+      <div class="exp-grid">
+        <div class="exp-col exp-col-1">
+          <div class="exp-header">
+            <h4><span class="ico-wrap"><i data-lucide="school"></i></span> Featured Colleges</h4>
+          </div>
+          <ul class="exp-list" id="featColleges"></ul>
+        </div>
+        <div class="exp-col exp-col-2">
+          <div class="exp-header">
+            <h4><span class="ico-wrap"><i data-lucide="clipboard-list"></i></span> Important Exams</h4>
+          </div>
+          <ul class="exp-list" id="featExams"></ul>
+          <div class="exp-header exp-header-sub">
+            <h4><span class="ico-wrap"><i data-lucide="map-pin"></i></span> Top States</h4>
+          </div>
+          <div class="state-grid" id="topStates"></div>
+        </div>
+        <div class="exp-col exp-col-3">
+          <div class="exp-header">
+            <h4><span class="ico-wrap"><i data-lucide="book-open"></i></span> Related Courses</h4>
+          </div>
+          <ul class="exp-list" id="featCourses"></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TOP COLLEGES -->
+  <section class="section colleges-section" id="colleges">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="kicker">Recommended</span>
+        <h2>India's Best <span class="grad-2">Colleges</span></h2>
+        <p>Handpicked, verified and ranked by NIRF + EduScore — updated weekly.</p>
+      </div>
+      <div class="filter-bar">
+        <button class="filter active" data-f="all">All</button>
+        <button class="filter" data-f="engineering">Engineering</button>
+        <button class="filter" data-f="management">Management</button>
+        <button class="filter" data-f="medical">Medical</button>
+        <button class="filter" data-f="law">Law</button>
+        <button class="filter" data-f="arts">Arts</button>
+      </div>
+      <div class="colleges-grid" id="collegesGrid"></div>
+      <div class="load-more-wrap">
+        <button class="btn btn-outline-orange" id="loadMore">Load more colleges <i data-lucide="arrow-down"></i></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- TOP EXAMS -->
+  <section class="section exams-section" id="exams">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="kicker">2026 calendar</span>
+        <h2>Top <span class="grad">Entrance Exams</span></h2>
+        <p>Application timelines, eligibility and prep resources — all in one place.</p>
+      </div>
+      <div class="exams-grid" id="examsGrid"></div>
+    </div>
+  </section>
+
+  <!-- RANKINGS -->
+  <section class="section rankings-section" id="rankings">
+    <div class="wrap rank-wrap">
+      <div class="rank-left">
+        <span class="kicker">Live Rankings</span>
+        <h2>Rankings that go beyond <span class="grad-2">numbers</span></h2>
+        <p>We combine NIRF, placement data, faculty quality, student reviews and 40+ signals into a single transparent EduScore — updated every Monday.</p>
+        <ul class="rank-points">
+          <li><i data-lucide="check-circle-2"></i> NIRF 2026 official data</li>
+          <li><i data-lucide="check-circle-2"></i> Verified placement reports</li>
+          <li><i data-lucide="check-circle-2"></i> 1.2L+ verified student reviews</li>
+          <li><i data-lucide="check-circle-2"></i> Updated every Monday</li>
+        </ul>
+        <a href="#" class="btn btn-orange">Explore All Rankings <i data-lucide="arrow-right"></i></a>
+      </div>
+      <div class="rank-right">
+        <div class="rank-card">
+          <header>
+            <h4>Top Engineering Colleges · 2026</h4>
+            <select class="rank-select">
+              <option>By Overall Score</option>
+              <option>By Placement</option>
+              <option>By Research</option>
+            </select>
+          </header>
+          <table class="rank-table">
+            <thead><tr><th>#</th><th>College</th><th>Score</th><th>Trend</th></tr></thead>
+            <tbody id="rankBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ACHIEVEMENTS -->
+  <section class="achievements">
+    <div class="wrap ach-inner">
+      <div class="ach-left">
+        <span class="kicker light">Recognition</span>
+        <h2>Our Achievements</h2>
+        <p>Recognised by India's top education bodies and global industry leaders.</p>
+        <a href="#" class="btn btn-glass">All Awards <i data-lucide="arrow-right"></i></a>
+      </div>
+      <div class="ach-right">
+        <article class="ach-card">
+          <div class="ach-img"><img src="assets/promo/ach-1.jpg" alt="" loading="lazy"/></div>
+          <div class="ach-body">
+            <span class="ach-year">2024</span>
+            <strong>Best Education Consultancy of the Year</strong>
+            <span class="ach-event">Indian Education Congress &amp; Awards</span>
+          </div>
+        </article>
+        <article class="ach-card">
+          <div class="ach-img"><img src="assets/promo/ach-2.jpg" alt="" loading="lazy"/></div>
+          <div class="ach-body">
+            <span class="ach-year">2023</span>
+            <strong>Best Education &amp; Skill Development Campaign</strong>
+            <span class="ach-event">DMA Trailblazers Awards</span>
+          </div>
+        </article>
+        <article class="ach-card">
+          <div class="ach-img"><img src="assets/promo/ach-3.jpg" alt="" loading="lazy"/></div>
+          <div class="ach-body">
+            <span class="ach-year">2024</span>
+            <strong>Entrepreneur of the Year (Edtech)</strong>
+            <span class="ach-event">Education Excellence Awards</span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEWS / MEDIA TABS -->
+  <section class="section news-section" id="news">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="kicker">Latest updates</span>
+        <h2>News, Articles &amp; <span class="grad">Insights</span></h2>
+      </div>
+      <div class="news-tabs">
+        <button class="news-tab active" data-newstab="media">Media Coverage</button>
+        <button class="news-tab" data-newstab="articles">Articles</button>
+        <button class="news-tab" data-newstab="news">Exam News</button>
+        <button class="news-tab" data-newstab="boards">Boards</button>
+        <button class="news-tab" data-newstab="partner">Partner Colleges</button>
+      </div>
+      <div class="news-grid" id="newsGrid"></div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials">
+    <div class="t-bg" aria-hidden="true"></div>
+    <div class="wrap">
+      <div class="sec-head center">
+        <span class="kicker light">Real stories</span>
+        <h2>Our Students <span class="grad-light">Love Us</span></h2>
+        <p class="light">Real reviews from real students who found their dream colleges with us.</p>
+      </div>
+      <div class="t-grid" id="tGrid"></div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact-band" id="contact">
+    <div class="wrap c-inner">
+      <div class="c-left">
+        <span class="kicker">Talk to us</span>
+        <h2>Personalised guidance from <span class="grad">trusted experts</span></h2>
+        <p>Free 30-minute counselling with our IIT/IIM-trained advisors. We'll call you within 30 minutes.</p>
+        <ul class="c-perks">
+          <li><i data-lucide="check"></i> Personalised college shortlist</li>
+          <li><i data-lucide="check"></i> Scholarship & loan guidance</li>
+          <li><i data-lucide="check"></i> Application & document help</li>
+          <li><i data-lucide="check"></i> No spam, no hidden fees</li>
+        </ul>
+      </div>
+      <form class="c-form" id="contactForm">
+        <h3>Get in touch</h3>
+        <div class="fields">
+          <label>
+            <span>Full Name</span>
+            <input type="text" name="name" placeholder="Aarav Mehta" required />
+          </label>
+          <label>
+            <span>Mobile</span>
+            <input type="tel" name="mobile" placeholder="+91 98765 43210" required />
+          </label>
+          <label class="full">
+            <span>Email</span>
+            <input type="email" name="email" placeholder="you@email.com" required />
+          </label>
+          <label>
+            <span>Stream</span>
+            <select required>
+              <option value="">Select stream</option>
+              <option>Engineering</option><option>Management</option>
+              <option>Medical</option><option>Law</option>
+              <option>Arts</option><option>Commerce</option>
+            </select>
+          </label>
+          <label>
+            <span>Year</span>
+            <select required>
+              <option value="">Select year</option>
+              <option>Class 12 - 2026</option><option>Class 12 - 2027</option>
+              <option>Graduate - 2026</option><option>Working Professional</option>
+            </select>
+          </label>
+        </div>
+        <button type="submit" class="btn btn-orange btn-lg">Request Free Callback <i data-lucide="phone"></i></button>
+        <p class="c-priv">By proceeding you agree to our <a href="#">terms</a> &amp; <a href="#">privacy policy</a>.</p>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="wrap footer-grid">
+      <div class="f-brand">
+        <a href="#top" class="brand">
+          <div class="brand-mark"><i data-lucide="graduation-cap"></i></div>
+          <div class="brand-text">
+            <strong>College<span>Kaksha</span></strong>
+            <em>Right Guidance · Bright Future</em>
+          </div>
+        </a>
+        <p>India's smartest college discovery platform. AI-powered college, course and career recommendations — trusted by 1.2 Cr+ students.</p>
+        <div class="socials">
+          <a href="#" aria-label="Facebook"><i data-lucide="facebook"></i></a>
+          <a href="#" aria-label="Instagram"><i data-lucide="instagram"></i></a>
+          <a href="#" aria-label="Twitter"><i data-lucide="twitter"></i></a>
+          <a href="#" aria-label="LinkedIn"><i data-lucide="linkedin"></i></a>
+          <a href="#" aria-label="YouTube"><i data-lucide="youtube"></i></a>
+        </div>
+      </div>
+      <div>
+        <h5>Explore</h5>
+        <ul>
+          <li><a href="#colleges">Top Colleges</a></li>
+          <li><a href="#courses">Find Your Fit</a></li>
+          <li><a href="#exams">Entrance Exams</a></li>
+          <li><a href="#rankings">Rankings</a></li>
+          <li><a href="#news">News &amp; Updates</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Get in Touch</h5>
+        <ul>
+          <li><a href="#contact">Free Counselling</a></li>
+          <li><a href="#" data-modal="default">Talk to Expert</a></li>
+          <li><a href="#" data-modal="career">Career Compass</a></li>
+          <li><a href="#" data-modal="apply">Start Application</a></li>
+        </ul>
+      </div>
+      <div class="f-office">
+        <h5>Reach Us</h5>
+        <p class="addr"><i data-lucide="map-pin"></i> Pride Hulkul, 6th Floor, Lalbagh Road, Bengaluru — 560027</p>
+        <p class="addr"><a href="mailto:hello@collegekaksha.com"><i data-lucide="mail"></i> hello@collegekaksha.com</a></p>
+        <p class="addr"><a href="tel:18005729877"><i data-lucide="phone"></i> 1800-572-9877 (Toll Free)</a></p>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="wrap fb-inner">
+        <span>© 2026 CollegeKaksha Education Services Pvt. Ltd. All rights reserved.</span>
+        <div>
+          <a href="#">Privacy</a> · <a href="#">Terms</a> · <a href="#">Cookies</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- WISHLIST DRAWER -->
+  <aside class="wl-drawer" id="wlDrawer" aria-hidden="true" aria-label="Your wishlist">
+    <header class="wl-head">
+      <div>
+        <h3><i data-lucide="heart"></i> Your Wishlist</h3>
+        <p id="wlSubtitle">0 colleges saved</p>
+      </div>
+      <button class="wl-close" id="wlClose" aria-label="Close wishlist"><i data-lucide="x"></i></button>
+    </header>
+    <div class="wl-body" id="wlBody"></div>
+    <footer class="wl-foot" id="wlFoot" hidden>
+      <button class="btn btn-orange" id="wlApplyAll"><i data-lucide="send"></i> Apply to All</button>
+      <button class="btn btn-soft" id="wlClear">Clear all</button>
+    </footer>
+  </aside>
+  <div class="wl-backdrop" id="wlBackdrop"></div>
+
+  <button class="chat-fab" aria-label="Chat with us" data-modal="default"><i data-lucide="message-circle"></i></button>
+  <button class="back-top" id="backTop" aria-label="Back to top"><i data-lucide="arrow-up"></i></button>
+  <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+  <div class="toast" id="toast" role="status"></div>
+
+  <!-- COUNSELLING MODAL -->
+  <div class="modal" id="ckModal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="modalTitle">
+    <div class="modal-backdrop" data-close></div>
+    <div class="modal-dialog" role="document">
+      <button class="modal-close" aria-label="Close" data-close>
+        <i data-lucide="x"></i>
+      </button>
+
+      <aside class="modal-side">
+        <div class="modal-side-decoration" aria-hidden="true"></div>
+        <span class="modal-pill" id="modalPill"><i data-lucide="sparkles"></i> FREE</span>
+        <h2 id="modalTitle">Get Free Counselling</h2>
+        <p id="modalSubtitle">Talk to our IIT/IIM-trained counsellors. We'll call you within 30 minutes — no spam, just guidance.</p>
+
+        <ul class="modal-perks">
+          <li><i data-lucide="check-circle-2"></i> Free 30-min 1:1 consultation</li>
+          <li><i data-lucide="check-circle-2"></i> Personalised college shortlist</li>
+          <li><i data-lucide="check-circle-2"></i> Scholarship &amp; loan guidance</li>
+          <li><i data-lucide="check-circle-2"></i> Zero spam, zero hidden fees</li>
+        </ul>
+
+        <div class="modal-trust">
+          <div class="trust-avatars">
+            <img src="assets/avatars/student-1.jpg" alt="" loading="lazy" />
+            <img src="assets/avatars/student-2.jpg" alt="" loading="lazy" />
+            <img src="assets/avatars/student-3.jpg" alt="" loading="lazy" />
+          </div>
+          <span>Trusted by <strong>1.2 Cr+ students</strong> across India</span>
+        </div>
+      </aside>
+
+      <div class="modal-main">
+        <header class="modal-main-head">
+          <h3 id="modalFormTitle">Request a callback</h3>
+          <p>Fill in the details — takes less than 30 seconds.</p>
+        </header>
+
+        <form class="modal-form" id="modalForm" novalidate>
+          <label>
+            <span>Full Name <em>*</em></span>
+            <div class="input-wrap">
+              <i data-lucide="user"></i>
+              <input type="text" name="name" placeholder="Aarav Mehta" required autocomplete="name" />
+            </div>
+          </label>
+
+          <label>
+            <span>Mobile Number <em>*</em></span>
+            <div class="input-wrap phone-input">
+              <span class="cc">+91</span>
+              <input type="tel" name="mobile" placeholder="98765 43210" required autocomplete="tel" />
+            </div>
+          </label>
+
+          <label class="full">
+            <span>Email Address <em>*</em></span>
+            <div class="input-wrap">
+              <i data-lucide="mail"></i>
+              <input type="email" name="email" placeholder="you@example.com" required autocomplete="email" />
+            </div>
+          </label>
+
+          <label>
+            <span>Interested In</span>
+            <div class="input-wrap">
+              <i data-lucide="graduation-cap"></i>
+              <select name="stream">
+                <option value="">Select stream</option>
+                <option>Engineering</option>
+                <option>Management / MBA</option>
+                <option>Medical / MBBS</option>
+                <option>Law</option>
+                <option>Commerce</option>
+                <option>Arts &amp; Humanities</option>
+                <option>Other</option>
+              </select>
+            </div>
+          </label>
+
+          <label>
+            <span>Education Year</span>
+            <div class="input-wrap">
+              <i data-lucide="calendar"></i>
+              <select name="year">
+                <option value="">Select year</option>
+                <option>Class 12 — 2026</option>
+                <option>Class 12 — 2027</option>
+                <option>Class 11</option>
+                <option>Graduate — 2026</option>
+                <option>Working Professional</option>
+              </select>
+            </div>
+          </label>
+
+          <label class="full">
+            <span>City <em class="opt">(optional)</em></span>
+            <div class="input-wrap">
+              <i data-lucide="map-pin"></i>
+              <input type="text" name="city" placeholder="Bangalore" autocomplete="address-level2" />
+            </div>
+          </label>
+
+          <button type="submit" class="modal-submit" id="modalSubmit">
+            <span class="submit-default"><i data-lucide="phone-call"></i> <span id="modalCtaLabel">Get Free Callback</span> <i data-lucide="arrow-right"></i></span>
+            <span class="submit-loading"><i data-lucide="loader-2"></i> Sending your request…</span>
+            <span class="submit-success"><i data-lucide="check"></i> Request received!</span>
+          </button>
+
+          <p class="modal-priv">
+            <i data-lucide="shield-check"></i>
+            By submitting, you agree to our <a href="#">terms of use</a> &amp; <a href="#">privacy policy</a>. Your data is encrypted &amp; never sold.
+          </p>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Lucide icons CDN -->
+  <script
+    src="https://unpkg.com/lucide@0.396.0/dist/umd/lucide.min.js"
+    integrity="sha384-//l3z3TdZmKlfPpvAWm0K+3YEsjQ+gupC3t0K3ypvu+pCu1mdg8iND80VhwVRyKB"
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"></script>
+  <script src="script.js"></script>
+</body>
+</html>
