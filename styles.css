@@ -2619,6 +2619,12 @@ h1, h2, h3, h4, h5, h6 { font-family: 'Manrope', sans-serif; font-weight: 800; l
 }
 
 /* ===== Mobile drawer ===== */
+/* Drawer-only chrome (close button, footer CTA, brand row) — injected by
+   JS and persisted in the DOM. Hide whenever the drawer isn't open so
+   they don't leak into the desktop nav after a resize. */
+.menu .mm-head,
+.menu .mm-foot { display: none; }
+
 .menu.mobile-open {
   display: flex;
   flex-direction: column;

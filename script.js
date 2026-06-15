@@ -948,6 +948,12 @@ function setupNav() {
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape' && menu.classList.contains('mobile-open')) closeMenu();
   });
+  // Close drawer automatically when crossing into desktop viewport — the
+  // hamburger is hidden there, leaving the user no way to dismiss it.
+  const desktopMQ = window.matchMedia('(min-width: 1025px)');
+  const handleMQ = e => { if (e.matches && menu.classList.contains('mobile-open')) closeMenu(); };
+  if (desktopMQ.addEventListener) desktopMQ.addEventListener('change', handleMQ);
+  else desktopMQ.addListener(handleMQ);
 
 }
 
