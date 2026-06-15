@@ -335,33 +335,72 @@ function renderColleges(filter='all', customList=null) {
       </div>
     `;
   } else {
-    $("#collegesGrid").innerHTML = list.map(c => `
+    const streamLabel = {
+      engineering: 'Engineering', management: 'Management', medical: 'Medical',
+      law: 'Law', arts: 'Arts', commerce: 'Commerce'
+    };
+    $("#collegesGrid").innerHTML = list.map(c => {
+      const stream = streamLabel[c.category] || c.category;
+      const topCourse = (c.offers && c.offers[0]) || '';
+      const moreCourses = Math.max(0, (c.offers?.length || 0) - 1);
+      const visibleTags = (c.tags || []).slice(0, 3);
+      return `
       <article class="college-card reveal" data-id="${c.id}">
         <div class="cc-hero">
           <img src="${c.img}" alt="${escapeHtml(c.name)}" class="cc-bg" loading="lazy" />
+          <span class="cc-stream">${escapeHtml(stream)}</span>
           <div class="cc-rank-badge"><i data-lucide="trophy"></i> Rank <span>#${c.rank}</span></div>
           <button class="cc-fav ${wishlist.has(c.id) ? 'active' : ''}" aria-label="Save" data-cid="${c.id}"><i data-lucide="heart"></i></button>
           <div class="cc-logo">${logoBadge(c.logo)}</div>
         </div>
         <div class="cc-body">
-          <h3 class="cc-name">${escapeHtml(c.name)}</h3>
-          <div class="cc-loc"><i data-lucide="map-pin"></i> ${escapeHtml(c.location)}</div>
-          <div class="cc-rating">
-            <span class="score">★ ${c.rating}</span>
-            <span class="reviews">${escapeHtml(c.reviews)} reviews</span>
+          <div class="cc-head-row">
+            <h3 class="cc-name">${escapeHtml(c.name)}</h3>
+            <span class="cc-rating-pill"><i data-lucide="star"></i>${c.rating}</span>
           </div>
-          <div class="cc-tags">${c.tags.map(t => `<span class="cc-tag">${escapeHtml(t)}</span>`).join('')}</div>
-          <div class="cc-info">
-            <div><span>Total Fees</span><strong>${escapeHtml(c.fees)}</strong></div>
-            <div><span>Avg. Package</span><strong>${escapeHtml(c.placement)}</strong></div>
+          <div class="cc-loc">
+            <i data-lucide="map-pin"></i>
+            <span>${escapeHtml(c.location)}</span>
+            <span class="cc-dot" aria-hidden="true">·</span>
+            <span class="cc-reviews">${escapeHtml(c.reviews)} reviews</span>
           </div>
+
+          <div class="cc-tags">${visibleTags.map(t => `<span class="cc-tag">${escapeHtml(t)}</span>`).join('')}</div>
+
+          <div class="cc-quick">
+            <div class="cc-quick-cell">
+              <div class="cc-q-ic"><i data-lucide="wallet"></i></div>
+              <div class="cc-q-meta">
+                <span>Total Fees</span>
+                <strong>${escapeHtml(c.fees)}</strong>
+              </div>
+            </div>
+            <div class="cc-quick-cell">
+              <div class="cc-q-ic cc-q-green"><i data-lucide="trending-up"></i></div>
+              <div class="cc-q-meta">
+                <span>Avg. Package</span>
+                <strong>${escapeHtml(c.placement)}</strong>
+              </div>
+            </div>
+          </div>
+
+          ${topCourse ? `
+          <div class="cc-courses">
+            <div class="cc-q-ic cc-q-blue"><i data-lucide="book-open-check"></i></div>
+            <div class="cc-q-meta">
+              <span>Top Course</span>
+              <strong>${escapeHtml(topCourse)}</strong>
+            </div>
+            ${moreCourses > 0 ? `<span class="cc-courses-count">+${moreCourses} more</span>` : ''}
+          </div>` : ''}
+
           <div class="cc-actions">
-            <button class="btn btn-orange cc-apply">Apply Now</button>
-            <button class="btn btn-soft cc-brochure">Brochure</button>
+            <button class="btn btn-orange cc-apply"><i data-lucide="send"></i> Apply Now</button>
+            <button class="btn btn-soft cc-brochure" aria-label="Download brochure"><i data-lucide="download"></i></button>
           </div>
         </div>
       </article>
-    `).join('');
+    `;}).join('');
   }
   bindCardEvents();
   if (window.lucide) lucide.createIcons();
@@ -630,11 +669,6 @@ function performSearch(query) {
     scrollToSection('#exams');
     if (examMatches.length === 1) highlightCard('.exam-card', examMatches[0].id, 'data-eid');
     showToast(`Found ${examMatches.length} exam${examMatches.length === 1 ? '' : 's'}`);
-  } else if (courseStream) {
-    activateCourseTab(courseStream);
-    scrollToSection('#courses');
-    showSearchBanner('#courses', query, 1, 'streams');
-    showToast(`Showing ${courseStream === 'eng' ? 'Engineering' : courseStream === 'mgmt' ? 'Management' : courseStream} courses`);
   } else {
     showToast(`No matches found for "${query}"`);
   }
@@ -1294,17 +1328,195 @@ function observeReveals() {
   $$(".reveal:not(.in)").forEach(el => io.observe(el));
 }
 
+/* ===== Listing — Explore colleges (full-list filters + sort) ===== */
+const LC_STATE = { search: '', stream: '', course: '', city: '', type: '', maxFees: 3000000, sort: 'rank' };
+const LC_FEES_MAX = 3000000;
+
+function parseFees(str) {
+  if (!str) return 0;
+  const s = String(str).replace(/[₹,\s]/g, '');
+  const lMatch = s.match(/^([\d.]+)L/i);
+  if (lMatch) return Math.round(parseFloat(lMatch[1]) * 100000);
+  const numMatch = s.match(/^([\d.]+)/);
+  return numMatch ? Math.round(parseFloat(numMatch[1])) : 0;
+}
+
+function getCity(loc) { return (loc || '').split(',')[0].trim(); }
+
+function getCollegeType(tags) {
+  for (const t of tags || []) {
+    if (/govt/i.test(t)) return 'Govt.';
+    if (/private/i.test(t)) return 'Private';
+    if (/deemed/i.test(t)) return 'Deemed';
+  }
+  return 'Other';
+}
+
+function formatFees(n) {
+  if (n >= 100000) return `₹${(n / 100000).toFixed(1).replace(/\.0$/, '')} L`;
+  return `₹${n.toLocaleString('en-IN')}`;
+}
+
+function applyListingFilters() {
+  let list = COLLEGES.slice();
+
+  if (LC_STATE.search) {
+    const q = LC_STATE.search.toLowerCase();
+    list = list.filter(c => c.name.toLowerCase().includes(q));
+  }
+  if (LC_STATE.stream) list = list.filter(c => c.category === LC_STATE.stream);
+  if (LC_STATE.course) {
+    const cq = LC_STATE.course.toLowerCase();
+    list = list.filter(c => (c.offers || []).some(o => o.toLowerCase() === cq));
+  }
+  if (LC_STATE.city) list = list.filter(c => getCity(c.location) === LC_STATE.city);
+  if (LC_STATE.type) list = list.filter(c => getCollegeType(c.tags) === LC_STATE.type);
+  list = list.filter(c => parseFees(c.fees) <= LC_STATE.maxFees);
+
+  switch (LC_STATE.sort) {
+    case 'rank':      list.sort((a, b) => a.rank - b.rank); break;
+    case 'fees-asc':  list.sort((a, b) => parseFees(a.fees) - parseFees(b.fees)); break;
+    case 'fees-desc': list.sort((a, b) => parseFees(b.fees) - parseFees(a.fees)); break;
+    case 'rating':    list.sort((a, b) => b.rating - a.rating); break;
+  }
+
+  const countEl = $("#lcResultsCount");
+  if (countEl) countEl.innerHTML = `<b>${list.length}</b> college${list.length === 1 ? '' : 's'} found`;
+  const emptyEl = $("#lcEmpty");
+  if (list.length === 0) {
+    $("#collegesGrid").innerHTML = '';
+    if (emptyEl) emptyEl.hidden = false;
+  } else {
+    if (emptyEl) emptyEl.hidden = true;
+    renderColleges('all', list);
+  }
+  updateActiveFiltersPill();
+}
+
+function updateActiveFiltersPill() {
+  let n = 0;
+  if (LC_STATE.search) n++;
+  if (LC_STATE.stream) n++;
+  if (LC_STATE.course) n++;
+  if (LC_STATE.city) n++;
+  if (LC_STATE.type) n++;
+  if (LC_STATE.maxFees < LC_FEES_MAX) n++;
+  const pill = $("#lcActivePill");
+  const ftCount = $("#lcFiltersCount");
+  if (pill) { pill.hidden = n === 0; pill.textContent = `${n} active`; }
+  if (ftCount) { ftCount.hidden = n === 0; ftCount.textContent = n; }
+}
+
+function populateListingFilters() {
+  const streams = [
+    { id: 'engineering', label: 'Engineering' },
+    { id: 'management', label: 'Management' },
+    { id: 'medical',     label: 'Medical' },
+    { id: 'law',         label: 'Law' },
+    { id: 'arts',        label: 'Arts' },
+  ];
+  $("#lcFilterStream").innerHTML = streams.map(s =>
+    `<button class="lc-chip" type="button" data-val="${s.id}">${escapeHtml(s.label)}</button>`
+  ).join('');
+
+  const courseSet = new Set();
+  COLLEGES.forEach(c => (c.offers || []).forEach(o => courseSet.add(o)));
+  $("#lcFilterCourse").innerHTML = [...courseSet].sort().map(c =>
+    `<button class="lc-chip" type="button" data-val="${escapeHtml(c)}">${escapeHtml(c)}</button>`
+  ).join('');
+
+  const citySet = new Set();
+  COLLEGES.forEach(c => citySet.add(getCity(c.location)));
+  $("#lcFilterCity").innerHTML = '<option value="">All cities</option>' +
+    [...citySet].sort().map(c => `<option value="${escapeHtml(c)}">${escapeHtml(c)}</option>`).join('');
+
+  $("#lcFilterType").innerHTML = ['Govt.', 'Private', 'Deemed'].map(t =>
+    `<button class="lc-chip" type="button" data-val="${escapeHtml(t)}">${escapeHtml(t)}</button>`
+  ).join('');
+}
+
+function setupListingFilters() {
+  if (!$("#lcFilterStream")) return;
+  populateListingFilters();
+
+  const searchInput = $("#lcCollegeSearch");
+  const clearBtn = $("#lcCollegeSearchClear");
+  searchInput.addEventListener('input', () => {
+    LC_STATE.search = searchInput.value.trim();
+    clearBtn.hidden = !LC_STATE.search;
+    applyListingFilters();
+  });
+  clearBtn.addEventListener('click', () => {
+    searchInput.value = ''; LC_STATE.search = ''; clearBtn.hidden = true;
+    applyListingFilters(); searchInput.focus();
+  });
+
+  const wireChips = (containerId, key) => {
+    $(containerId).addEventListener('click', e => {
+      const chip = e.target.closest('.lc-chip');
+      if (!chip) return;
+      const val = chip.dataset.val;
+      if (LC_STATE[key] === val) {
+        LC_STATE[key] = ''; chip.classList.remove('active');
+      } else {
+        LC_STATE[key] = val;
+        $$(`${containerId} .lc-chip`).forEach(c => c.classList.remove('active'));
+        chip.classList.add('active');
+      }
+      applyListingFilters();
+    });
+  };
+  wireChips('#lcFilterStream', 'stream');
+  wireChips('#lcFilterCourse', 'course');
+  wireChips('#lcFilterType', 'type');
+
+  $("#lcFilterCity").addEventListener('change', e => {
+    LC_STATE.city = e.target.value; applyListingFilters();
+  });
+
+  const feesInput = $("#lcFilterFees");
+  const feesOut = $("#lcFeesOut");
+  feesInput.addEventListener('input', () => {
+    const v = +feesInput.value;
+    LC_STATE.maxFees = v;
+    feesOut.textContent = v >= LC_FEES_MAX ? 'Any budget' : `Up to ${formatFees(v)}`;
+    applyListingFilters();
+  });
+
+  $("#lcSortBy").addEventListener('change', e => {
+    LC_STATE.sort = e.target.value; applyListingFilters();
+  });
+
+  const resetAll = () => {
+    LC_STATE.search = ''; LC_STATE.stream = ''; LC_STATE.course = '';
+    LC_STATE.city = ''; LC_STATE.type = ''; LC_STATE.maxFees = LC_FEES_MAX;
+    searchInput.value = ''; clearBtn.hidden = true;
+    $$(".lc-chips .lc-chip").forEach(c => c.classList.remove('active'));
+    $("#lcFilterCity").value = '';
+    feesInput.value = LC_FEES_MAX; feesOut.textContent = 'Any budget';
+    applyListingFilters();
+  };
+  $("#lcClearFilters").addEventListener('click', resetAll);
+  $("#lcResetFromEmpty")?.addEventListener('click', resetAll);
+
+  const filtersEl = $("#lcFilters");
+  const backdrop = $("#lcFiltersBackdrop");
+  const openFilters = () => { filtersEl.classList.add('open'); backdrop.hidden = false; document.body.style.overflow = 'hidden'; };
+  const closeFilters = () => { filtersEl.classList.remove('open'); backdrop.hidden = true; document.body.style.overflow = ''; };
+  $("#lcFiltersToggle").addEventListener('click', openFilters);
+  $("#lcFiltersClose").addEventListener('click', closeFilters);
+  backdrop.addEventListener('click', closeFilters);
+}
+
 /* ===== Init ===== */
 document.addEventListener('DOMContentLoaded', () => {
-  renderTab('eng');
-  renderColleges();
+  setupListingFilters();
+  applyListingFilters();
   renderExams();
   renderRankings();
   renderNews('media');
   renderTestimonials();
   setupSearch();
-  setupFilters();
-  setupExploreTabs();
   setupExploreClicks();
   setupNewsTabs();
   setupTheme();

@@ -420,74 +420,100 @@
     </div>
   </section>
 
-  <!-- EXPLORE TABS -->
-  <section class="section explore-section" id="courses">
+  <!-- EXPLORE COLLEGES (full list) -->
+  <section class="section listing-section" id="colleges">
     <div class="wrap">
       <div class="sec-head">
-        <span class="kicker">Find your fit</span>
-        <h2>Find The Perfect <span class="grad">College For You</span></h2>
-        <p>Discover top colleges, exams and opportunities in your preferred field.</p>
+        <span class="kicker">The full list</span>
+        <h2>Explore <span class="grad">colleges</span></h2>
+        <p>Filter the full list by stream, course, city, type or budget — sorted however you like.</p>
       </div>
 
-      <div class="exp-tabs-wrap">
-        <div class="exp-tabs">
-          <button class="exp-tab active" data-extab="eng"><i data-lucide="cpu"></i> Engineering</button>
-          <button class="exp-tab" data-extab="mgmt"><i data-lucide="briefcase"></i> Management</button>
-          <button class="exp-tab" data-extab="comm"><i data-lucide="trending-up"></i> Commerce</button>
-          <button class="exp-tab" data-extab="med"><i data-lucide="stethoscope"></i> Medical</button>
-          <button class="exp-tab" data-extab="sci"><i data-lucide="flask-conical"></i> Science</button>
-          <button class="exp-tab" data-extab="hosp"><i data-lucide="utensils"></i> Hotel Mgmt</button>
-          <button class="exp-tab" data-extab="it"><i data-lucide="code"></i> IT</button>
-          <button class="exp-tab" data-extab="arts"><i data-lucide="palette"></i> Arts</button>
-        </div>
-      </div>
+      <div class="listing-grid">
+        <!-- Mobile filter toggle -->
+        <button class="lc-filters-toggle" id="lcFiltersToggle" type="button" aria-expanded="false" aria-controls="lcFilters">
+          <i data-lucide="sliders-horizontal"></i>
+          <span>Filters</span>
+          <span class="lc-ft-count" id="lcFiltersCount" hidden>0</span>
+        </button>
 
-      <div class="exp-grid">
-        <div class="exp-col exp-col-1">
-          <div class="exp-header">
-            <h4><span class="ico-wrap"><i data-lucide="school"></i></span> Featured Colleges</h4>
+        <!-- Sidebar filters -->
+        <aside class="lc-filters" id="lcFilters" aria-label="Filters">
+          <div class="lc-filters-head">
+            <h3>Filters <span class="lc-active-pill" id="lcActivePill" hidden>0 active</span></h3>
+            <button class="lc-link-btn" id="lcClearFilters" type="button">Clear all</button>
+            <button class="lc-filters-close" id="lcFiltersClose" type="button" aria-label="Close filters"><i data-lucide="x"></i></button>
           </div>
-          <ul class="exp-list" id="featColleges"></ul>
-        </div>
-        <div class="exp-col exp-col-2">
-          <div class="exp-header">
-            <h4><span class="ico-wrap"><i data-lucide="clipboard-list"></i></span> Important Exams</h4>
-          </div>
-          <ul class="exp-list" id="featExams"></ul>
-          <div class="exp-header exp-header-sub">
-            <h4><span class="ico-wrap"><i data-lucide="map-pin"></i></span> Top States</h4>
-          </div>
-          <div class="state-grid" id="topStates"></div>
-        </div>
-        <div class="exp-col exp-col-3">
-          <div class="exp-header">
-            <h4><span class="ico-wrap"><i data-lucide="book-open"></i></span> Related Courses</h4>
-          </div>
-          <ul class="exp-list" id="featCourses"></ul>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- TOP COLLEGES -->
-  <section class="section colleges-section" id="colleges">
-    <div class="wrap">
-      <div class="sec-head">
-        <span class="kicker">Recommended</span>
-        <h2>India's Best <span class="grad-2">Colleges</span></h2>
-        <p>Handpicked, verified and ranked by NIRF + EduScore — updated weekly.</p>
-      </div>
-      <div class="filter-bar">
-        <button class="filter active" data-f="all">All</button>
-        <button class="filter" data-f="engineering">Engineering</button>
-        <button class="filter" data-f="management">Management</button>
-        <button class="filter" data-f="medical">Medical</button>
-        <button class="filter" data-f="law">Law</button>
-        <button class="filter" data-f="arts">Arts</button>
-      </div>
-      <div class="colleges-grid" id="collegesGrid"></div>
-      <div class="load-more-wrap">
-        <button class="btn btn-outline-orange" id="loadMore">Load more colleges <i data-lucide="arrow-down"></i></button>
+          <div class="lc-filters-body">
+            <fieldset class="lc-filter-block">
+              <legend>Find a college</legend>
+              <div class="lc-college-search">
+                <i data-lucide="search"></i>
+                <input type="search" id="lcCollegeSearch" placeholder="IIT, AIIMS, Christ…" aria-label="Filter by college name" autocomplete="off" />
+                <button type="button" class="lc-cs-clear" id="lcCollegeSearchClear" aria-label="Clear" hidden><i data-lucide="x"></i></button>
+              </div>
+              <p class="lc-cs-hint" id="lcCollegeSearchHint" hidden></p>
+            </fieldset>
+
+            <fieldset class="lc-filter-block">
+              <legend>Stream</legend>
+              <div class="lc-chips" id="lcFilterStream"></div>
+            </fieldset>
+
+            <fieldset class="lc-filter-block">
+              <legend>Course / Degree</legend>
+              <div class="lc-chips" id="lcFilterCourse"></div>
+            </fieldset>
+
+            <fieldset class="lc-filter-block">
+              <legend>City</legend>
+              <select id="lcFilterCity"><option value="">All cities</option></select>
+            </fieldset>
+
+            <fieldset class="lc-filter-block">
+              <legend>Type</legend>
+              <div class="lc-chips" id="lcFilterType"></div>
+            </fieldset>
+
+            <fieldset class="lc-filter-block">
+              <legend>Maximum total fees</legend>
+              <input type="range" id="lcFilterFees" min="50000" max="3000000" step="50000" value="3000000" />
+              <output id="lcFeesOut" class="lc-range-out">Any budget</output>
+            </fieldset>
+
+            <div class="lc-filter-cta">
+              <p>Need personalised help?</p>
+              <button class="btn btn-orange" type="button" data-modal="default"><i data-lucide="headset"></i> Talk to Expert</button>
+            </div>
+          </div>
+        </aside>
+        <div class="lc-filters-backdrop" id="lcFiltersBackdrop" hidden></div>
+
+        <!-- Results -->
+        <div class="lc-results">
+          <div class="lc-results-bar">
+            <p class="lc-results-count" id="lcResultsCount" aria-live="polite"></p>
+            <label class="lc-sort">
+              <span>Sort</span>
+              <select id="lcSortBy">
+                <option value="rank">Top ranked</option>
+                <option value="fees-asc">Fees: low to high</option>
+                <option value="fees-desc">Fees: high to low</option>
+                <option value="rating">Student rating</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="colleges-grid" id="collegesGrid"></div>
+
+          <div class="lc-empty" id="lcEmpty" hidden>
+            <i data-lucide="search-x"></i>
+            <h3>No colleges match those filters</h3>
+            <p>Try widening your budget, removing a stream, or clearing the search.</p>
+            <button class="btn btn-outline-orange" id="lcResetFromEmpty" type="button">Reset filters</button>
+          </div>
+        </div>
       </div>
     </div>
   </section>
