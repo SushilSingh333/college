@@ -881,25 +881,72 @@ function setupNav() {
   // mobile drawer
   const menu = $(".menu");
   let backdrop;
+
+  function ensureMenuChrome() {
+    // Inject header (brand + close) once
+    if (!menu.querySelector('.mm-head')) {
+      const head = document.createElement('div');
+      head.className = 'mm-head';
+      head.innerHTML = `
+        <div class="mm-brand">
+          <div class="brand-mark"><i data-lucide="graduation-cap"></i></div>
+          <div>
+            <strong>College<span>Kaksha</span></strong>
+            <em>Right Guidance · Bright Future</em>
+          </div>
+        </div>
+        <button class="mm-close" aria-label="Close menu"><i data-lucide="x"></i></button>
+      `;
+      menu.insertBefore(head, menu.firstChild);
+      head.querySelector('.mm-close').addEventListener('click', closeMenu);
+    }
+    // Inject footer (CTA + contact) once
+    if (!menu.querySelector('.mm-foot')) {
+      const foot = document.createElement('div');
+      foot.className = 'mm-foot';
+      foot.innerHTML = `
+        <button class="btn btn-orange" data-modal="default">
+          <i data-lucide="headset"></i> Talk to Expert
+        </button>
+        <div class="mm-contact">
+          <a href="tel:18005729877"><i data-lucide="phone"></i> 1800-572-9877</a>
+          <a href="mailto:hello@collegekaksha.com"><i data-lucide="mail"></i> Email us</a>
+        </div>
+      `;
+      menu.appendChild(foot);
+    }
+    if (window.lucide) lucide.createIcons();
+  }
+
   $("#hamburger")?.addEventListener('click', () => {
     if (menu.classList.contains('mobile-open')) closeMenu();
     else openMenu();
   });
+
   function openMenu() {
+    ensureMenuChrome();
     menu.classList.add('mobile-open');
     backdrop = document.createElement('div');
     backdrop.className = 'menu-backdrop show';
     backdrop.addEventListener('click', closeMenu);
     document.body.appendChild(backdrop);
+    document.body.classList.add('menu-open');
     document.body.style.overflow = 'hidden';
   }
   function closeMenu() {
     menu.classList.remove('mobile-open');
     backdrop?.remove();
+    document.body.classList.remove('menu-open');
     document.body.style.overflow = '';
   }
+  // Close drawer when an anchor link (in body) is tapped — but NOT the close button or modal trigger
   menu.addEventListener('click', e => {
-    if (e.target.tagName === 'A' && e.target.getAttribute('href')?.startsWith('#')) closeMenu();
+    const link = e.target.closest('a[href^="#"]');
+    if (link) closeMenu();
+  });
+  // Close on Escape
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && menu.classList.contains('mobile-open')) closeMenu();
   });
 
 }
